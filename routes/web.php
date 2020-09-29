@@ -30,5 +30,6 @@ Route::resource('/posts', 'PostController');
 //->except['','']
 
 Route::get('/posts/tag/{tag}', 'PostTagController@index')->name('posts.tags.index');
+Route::resource('users', 'UserController')->only(['show', 'edit', 'update']);
 
 Auth::routes();

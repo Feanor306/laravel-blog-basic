@@ -17,7 +17,7 @@ class AddUserToPostsTable extends Migration
             // USE NULLABLE FOR EXISTING DATABASE
             // $table->unsignedInteger('user_id')->nullable();
             
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

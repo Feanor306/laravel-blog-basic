@@ -6,7 +6,7 @@
     @endforeach
 </ul>
 @endif --}}
-@errors @enderrors
+<x-errors :errors="$errors"/>
 
 {{-- old('field', 'defaultValue') keeps value between reloads  --}}
 <div class="form-group">
@@ -18,13 +18,23 @@
 
 <div class="form-group">
     <label for="content">Content</label>
+    <textarea name="content"
+        rows="10"
+        class="form-control"
+        >
+        {{ old('content', $post->content ?? null) }}
+    </textarea>
+    {{--
     <input type="text" name="content" 
         class="form-control"
         value="{{ old('content', $post->content ?? null) }}">
+    --}}
 </div>
 
+<!--
 <div class="form-group">
     <label for="thumbnail">Thumbnail</label>
     <input type="file" name="thumbnail" 
         class="form-control-file">
 </div>
+-->

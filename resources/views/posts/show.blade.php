@@ -10,16 +10,15 @@
 
     {{-- <img src="{{ asset($post->image->path) }}" > --}}
     {{-- <img src="{{ Storage::url(asset($post->image->path)) }}" > --}}
-    <img src="{{ $post->image->url() }}" >
+    {{-- <img src="{{ $post->image->url() }}" > --}}
 
     {{-- <p>Added: {{ $post->created_at->diffForHumans() }}</p> --}}
-    @updated(['date' => $post->created_at,'name' => $post->user->name])
-    @endupdated
-    @updated(['date' => $post->updated_at,'name' => $post->user->name])
+    <x-updated :date="$post->created_at->diffForHumans()" :name="$post->user->name"/>
+    <x-updated :date="$post->updated_at->diffForHumans()" :name="$post->user->name">
         Updated
-    @endupdated
+    </x-updated>
 
-    @tags(['tags' => $post->tags])@endtags
+    <x-tags :tags="$post->tags" />
 
     @if((new Carbon\Carbon())->diffInMinutes($post->created_at) < 5)
         @component('badge', ['type'=> 'success'])
@@ -44,8 +43,8 @@
         {{-- <p class="text-muted">
             added {{ $comment->created_at->diffForHumans() }}
         </p> --}}
-        @updated(['date' => $comment->created_at])
-        @endupdated
+        <x-updated :date="$comment->created_at->diffForHumans()" :name="$comment->user->name"/>
+
     @empty
         <p>No comments</p>
     @endforelse

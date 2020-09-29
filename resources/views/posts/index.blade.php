@@ -20,12 +20,13 @@
             Added: {{ $post->created_at->diffForHumans() }}
             by {{ $post->user->name }}
         </p> --}}
-
-        @updated(['date' => $post->created_at,'name' => $post->user->name])
-        @endupdated
-
+        
+        <x-updated :date="$post->created_at->diffForHumans()" :name="$post->user->name"/>
+        
+        <x-tags :tags="$post->tags" />
+        {{--
         @tags(['tags' => $post->tags])@endtags
-
+        --}}
         @if($post->comments_count)
             <p>{{ $post-> comments_count }} comments</p>
         @else
@@ -35,14 +36,14 @@
         {{-- REDUCE AUTH CHECKS USING @auth DIRECTIVE WHEN POSSIBLE --}}
         @auth
             @can('update', $post)
-                <a class="btn btn-primary"
+                <a class="btn btn-primary leftButton"
                     href="{{ route('posts.edit', ['post' => $post->id]) }}">
                     Edit
                 </a>
             @endcan
 
             @can('delete', $post)
-                <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST">
+                <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" class="leftButton">
                     @csrf
                     @method('DELETE')
                     <input class="btn btn-primary" 

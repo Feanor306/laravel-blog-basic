@@ -59,7 +59,7 @@ class Post extends Model
 
     public function scopeMostCommented(Builder $query)
     {
-        return $query->widthCount('comments')->orderBy('comments_count', 'desc');
+        return $query->withCount('comments')->orderBy('comments_count', 'desc');
     }
 
     public static function boot()
