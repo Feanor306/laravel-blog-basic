@@ -19,6 +19,10 @@ Install composer -> https://getcomposer.org/
 
 ><VirtualHost laravel.test:3000>
 
+>this is required only if the default apache port 80 is taken
+
+>creating the virtual host will allow the app to be shown at address laravel.test:3000
+
 >this may also require changes to the hosts file in windows 127.0.0.1 laravel.test
 
 >ENV variables can be set here => SetEnv DB_CONNECTION mysql
